@@ -40,9 +40,9 @@ class DataTransformation:
 
             cat_pipeline = Pipeline(
                 steps = [
-                ("imputer",SimpleImputer(strategy="most_frequent"))
-                ("one_hot_encoder",OneHotEncoder())
-                ("scaler",StandardScaler())
+                ("imputer",SimpleImputer(strategy="most_frequent")),
+                ("one_hot_encoder",OneHotEncoder()),
+                ("scaler",StandardScaler()),
                 ]
             )
 
@@ -50,13 +50,13 @@ class DataTransformation:
             logging.info("Numerical columns standard scaling completed")
 
             logging.info(f"categorical columns: {categorical_columns}")
-            logging.inf(f"Numerical columns: {numerical_columns}")
+            logging.info(f"Numerical columns: {numerical_columns}")
 
             #now we need to combine both of the pipleine together by using column transformer
             preprocessor = ColumnTransformer(
                 [
                 ("num_pipeline",num_pipeline,numerical_columns),
-                ("cat_pipeline",cat_pipeline,categorical_columns)
+                ("cat_pipeline",cat_pipeline,categorical_columns),
                 ]
             )
 
